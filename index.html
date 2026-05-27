@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberArt 數位藝廊</title>
+    <style>
+        /* 1. 整個網頁的基礎設定 */
+        body {
+            background-color: #0b0b12; /* 更深邃的科技黑 */
+            color: #e0e0ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. 頂部導覽列 */
+        .navbar {
+            background-color: #121225;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #ff007f; /* 賽博朋克霓虹粉邊框 */
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #00ffff; /* 霓虹青色 */
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        /* 3. 頁面內容包裹區 */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* 4. 藝廊網格系統（核心排版） */
+        .gallery-grid {
+            display: flex;
+            flex-direction: column; /* 在手機上垂直排列 */
+            gap: 25px; /* 圖片之間的間距 */
+        }
+
+        /* 5. 單個作品卡片樣式 */
+        .art-card {
+            background-color: #16162a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid #333355;
+        }
+
+        .art-card img {
+            width: 100%;
+            display: block;
+        }
+
+        /* 作品下方的文字介紹區 */
+        .art-info {
+            padding: 15px;
+        }
+
+        .art-info h3 {
+            margin: 0 0 10px 0;
+            color: #ff007f;
+        }
+
+        .art-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #aaaacf;
+            line-height: 1.5;
+        }        /* 6. 按鈕樣式 */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        /* 讚好按鈕：霓虹粉 */
+        .btn-like {
+            background-color: #ff007f;
+            color: white;
+        }
+        .btn-like:hover {
+            background-color: #e00070;
+        }
+
+        /* 下載按鈕：藍色 */
+        .btn-download {
+            background-color: #0077ff;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>NEON FUTURE GALLERY</h1>
+    </div>
+
+    <div class="container">
+        
+        <div class="welcome-text">
+            <p>歡迎來到我的個人 AI 數位資產基地，以下為最新上架的作品：</p>
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="art-card">
+                <img src="cat.jpg" alt="Cyber Cat">
+                <div class="art-info">
+                    <h3>#001 賽博霓虹黑貓</h3>
+                    <p>利用 AI 生成的極具未來感的機械黑貓，擁有散發螢光綠的雙眼，背景為繁華的未來的霓虹都市不夜城。</p>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <img src="Cyberpunk style street2.jpg" alt="Cyber Art 2">
+                <div class="art-info">
+                    <h3>#002 未來世界概念圖</h3>
+                    <p>新生成的賽博朋克風格創作。每一張數碼資產，未來都是自動化被動收入系統的一部分。</p>
+                                        <div class="btn-group">
+                        <button class="btn btn-like" onclick="likeCat()">❤️ 讚好 (<span id="like-count">0</span>)</button>
+                        <a href="cat.jpg" download class="btn btn-download">💾 獲取高清原圖</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    <script>
+        let count = 0; // 建立一個數字，一開始是 0 次讚
+
+        function likeCat() {
+            count = count + 1; // 每點一次，數字就加 1
+            document.getElementById("like-count").innerText = count; // 網頁上的數字立刻更新
+        }
+    </script>
+
+</body>
+</html>
