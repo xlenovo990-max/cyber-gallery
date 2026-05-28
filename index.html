@@ -1,4 +1,4 @@
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -100,3 +100,80 @@
         }
         .btn-like:hover {
             background-color: #e00070;
+        }
+
+        /* 下載按鈕：藍色 */
+        .btn-download {
+            background-color: #0077ff;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            display: block;
+        }
+/* 讓網頁背景變深色、文字變亮色 */
+body {
+    background-color: #0d0e15;
+    color: #ffffff;
+}
+
+/* 讓圖片加上螢光邊框與發光效果 */
+img {
+    border: 3px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+    border-radius: 10px;
+    max-width: 90%;
+    display: block;
+    margin: 20px auto;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>NEON FUTURE GALLERY</h1>
+    </div>
+
+    <div class="container">
+        
+        <div class="welcome-text">
+            <p>歡迎來到我的個人 AI 數位資產基地，以下為最新上架的作品：</p>
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="art-card">
+                <img src="cat.jpg" alt="Cyber Cat">
+                <div class="art-info">
+                    <h3>#001 賽博霓虹黑貓</h3>
+                    <p>利用 AI 生成的極具未來感的機械黑貓，擁有散發螢光綠的雙眼，背景為繁華的未來的霓虹都市不夜城。</p>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <img src="Cyberpunk style street2.jpg" alt="Cyber Art 2">
+                <div class="art-info">
+                    <h3>#002 未來世界概念圖</h3>
+                    <p>新生成的賽博朋克風格創作。每一張數碼資產，未來都是自動化被動收入系統的一部分。</p>
+                                        <div class="btn-group">
+                        <button class="btn btn-like" onclick="likeCat()">❤️ 讚好 (<span id="like-count">0</span>)</button>
+                        <a href="cat.jpg" download class="btn btn-download">💾 獲取高清原圖</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    <script>
+        let count = 0; // 建立一個數字，一開始是 0 次讚
+
+        function likeCat() {
+            count = count + 1; // 每點一次，數字就加 1
+            document.getElementById("like-count").innerText = count; // 網頁上的數字立刻更新
+        }
+    </script>
+
+</body>
+</html>
