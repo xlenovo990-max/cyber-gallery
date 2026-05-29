@@ -179,6 +179,16 @@ img {
 </div>
 
 
+// 建立一個專屬於跑車的獨立數字
+let carCount = 0; 
+
+function likeCar() {
+    // 1. 每點擊一次，數字加 1
+    carCount = carCount + 1; 
+    
+    // 2. 更新網頁上的 car-count 標籤
+    document.getElementById("car-count").innerText = carCount;
+}
 
     </script>
 
