@@ -1,186 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberArt 數位藝廊</title>
+    <title>Neon Future Gallery | 賽博藝術畫廊</title>
     <style>
-        /* 1. 整個網頁的基礎設定 */
+        /* 基礎樣式設定 Base Styles */
         body {
-            background-color: #0b0b12; /* 更深邃的科技黑 */
-            color: #e0e0ff;
-            font-family: Arial, sans-serif;
+            background-color: #0d0e15;
+            color: #e2e8f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-        }
-
-        /* 2. 頂部導覽列 */
-        .navbar {
-            background-color: #121225;
-            padding: 15px;
-            text-align: center;
-            border-bottom: 2px solid #ff007f; /* 賽博朋克霓虹粉邊框 */
-        }
-        .navbar h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #00ffff; /* 霓虹青色 */
-            text-shadow: 0 0 10px #00ffff;
-        }
-
-        /* 3. 頁面內容包裹區 */
-        .container {
             padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .welcome-text {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* 4. 藝廊網格系統（核心排版） */
-        .gallery-grid {
             display: flex;
-            flex-direction: column; /* 在手機上垂直排列 */
-            gap: 25px; /* 圖片之間的間距 */
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* 5. 單個作品卡片樣式 */
+        h1 {
+            color: #00f2fe;
+            text-shadow: 0 0 10px #00f2fe;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #ff007f;
+            text-shadow: 0 0 8px #ff007f;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* 畫廊網格 Gallery Grid */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* 作品卡片 Art Card */
         .art-card {
-            background-color: #16162a;
+            background: #1a1c28;
+            border: 1px solid #2d3142;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            border: 1px solid #333355;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
         }
 
         .art-card img {
             width: 100%;
+            height: auto;
             display: block;
         }
 
-        /* 作品下方的文字介紹區 */
         .art-info {
-            padding: 15px;
+            padding: 20px;
         }
 
         .art-info h3 {
             margin: 0 0 10px 0;
-            color: #ff007f;
+            color: #00f2fe;
+            font-size: 1.2rem;
         }
 
         .art-info p {
-            margin: 0;
-            font-size: 14px;
-            color: #aaaacf;
-            line-height: 1.5;
-        }        /* 6. 按鈕樣式 */
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
         }
 
-        .btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        /* 讚好按鈕：霓虹粉 */
-        .btn-like {
-            background-color: #ff007f;
-            color: white;
-        }
-        .btn-like:hover {
-            background-color: #e00070;
-        }
-
-        /* 下載按鈕：藍色 */
+        /* 下載按鈕 Download Button */
         .btn-download {
-            background-color: #0077ff;
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-size: 14px;
             display: block;
+            text-align: center;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            color: #0d0e15;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+            transition: all 0.3s;
         }
-/* 讓網頁背景變深色、文字變亮色 */
-body {
-    background-color: #0d0e15;
-    color: #ffffff;
-}
 
-/* 讓圖片加上螢光邊框與發光效果 */
-img {
-    border: 3px solid #00ffcc;
-    box-shadow: 0 0 15px #00ffcc;
-    border-radius: 10px;
-    max-width: 90%;
-    display: block;
-    margin: 20px auto;
-}
+        .btn-download:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.6);
+        }
 
+        /* 頁腳 Footer */
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #475569;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <h1>NEON FUTURE GALLERY</h1>
-    </div>
+    <h1>NEON FUTURE GALLERY</h1>
+    <div class="subtitle">AI Digital Art & Passive Income System / AI 數位藝術與被動收入系統</div>
 
-    <div class="container">
-        
-        <div class="welcome-text">
-            <p>歡迎來到我的個人 AI 數位資產基地，以下為最新上架的作品：</p>
+    <div class="gallery-container">
+
+        <!-- 作品 #001 -->
+        <div class="art-card">
+            <img src="cat.jpg" alt="Cyber Cat">
+            <div class="art-info">
+                <h3>#001 Cyber Neon Cat / 賽博霓虹貓</h3>
+                <p>
+                    <strong>[EN]</strong> A futuristic feline enhanced with cybernetic implants, glowing in the neon alleyways.<br>
+                    <strong>[中文]</strong> 穿梭在霓虹巷弄中的未來機械貓，帶有科技感流線電路紋路。
+                </p>
+                <a href="cat.jpg" download class="btn-download">💾 Download High-Res / 獲取高清原圖</a>
+            </div>
         </div>
 
-        <div class="gallery-grid">
-
-            <div class="art-card">
-                <img src="cat.jpg" alt="Cyber Cat">
-                <div class="art-info">
-                    <h3>#001 賽博霓虹黑貓</h3>
-                    <p>利用 AI 生成的極具未來感的機械黑貓，擁有散發螢光綠的雙眼，背景為繁華的未來的霓虹都市不夜城。</p>
-                </div>
+        <!-- 作品 #002 -->
+        <div class="art-card">
+            <img src="girl.jpg" alt="Cyber Girl">
+            <div class="art-info">
+                <h3>#002 Cyber Anime Girl / 賽博動漫少女</h3>
+                <p>
+                    <strong>[EN]</strong> An atmospheric anime-style portrait featuring a cybernetic girl standing under the midnight rain.<br>
+                    <strong>[中文]</strong> 站在午夜街頭雨中的機械少女，細緻的科幻氛圍與唯美光影。
+                </p>
+                <a href="girl.jpg" download class="btn-download">💾 Download High-Res / 獲取高清原圖</a>
             </div>
+        </div>
 
-            <div class="art-card">
-                <img src="Cyberpunk style street2.jpg" alt="Cyber Art 2">
-                <div class="art-info">
-                    <h3>#002 未來世界概念圖</h3>
-                    <p>新生成的賽博朋克風格創作。每一張數碼資產，未來都是自動化被動收入系統的一部分。</p>
-                                        <div class="btn-group">
-                        <button class="btn btn-like" onclick="likeCat()">❤️ 讚好 (<span id="like-count">0</span>)</button>
-                        <a href="mycat.jpg" download class="btn btn-download">💾 獲取高清原圖</a>
-                    </div>
-
-                </div>
+        <!-- 作品 #003 (你親手創作的神作！) -->
+        <div class="art-card">
+            <img src="mycar.jpg" alt="Cyber Car">
+            <div class="art-info">
+                <h3>#003 Cyber Neon City / 賽博霓虹都市</h3>
+                <p>
+                    <strong>[EN]</strong> A high-octane concept supercar parked on a rain-slicked street, perfectly reflecting vivid pink and cyan neon lights.<br>
+                    <strong>[中文]</strong> 停在深夜雨後街頭的未來感超級跑車。地面水窪完美反射出強烈的粉紅與青色霓虹光影。
+                </p>
+                <a href="mycar.jpg" download class="btn-download">💾 Download High-Res / 獲取高清原圖</a>
             </div>
-<div class="art-card">
-                <img src="mycar.jpg" alt="Cyber Art 2">
-                <div class="art-info">
-                    <h3>#003 賽博霓虹都市</h3>
-                    <p>新生成的賽博朋克風格創作...。</p>
-                                        <div class="btn-group">
-    <button class="btn btn-like" onclick="likeCar()">
-        ❤️ 讚好 (<span id="car-count">0</span>)
-    </button>
+        </div>
 
-    <button class="btn-download">
-        <a href="car.jpg" target="_blank" style="color: white; text-decoration: none; display: block; width: 100%; height: 100%;">💾 獲取高清原圖</a>
-    </button>
-</div>
+    </div>
 
-
-
-    </script>
+    <footer>
+        &copy; 2026 Neon Future Studio. Powered by AI & GitHub.
+    </footer>
 
 </body>
-                </html>
+</html>
+
