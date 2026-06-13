@@ -1,160 +1,283 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-HK">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Future Gallery | 賽博藝術畫廊</title>
+    <title>AI Hustle Journal | 小白 AI 創業實錄</title>
     <style>
-        /* 基礎樣式設定 Base Styles */
-        body {
-            background-color: #0d0e15;
-            color: #e2e8f0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        :root {
+            --primary-glow: #00f3ff;
+            --secondary-glow: #ff007f;
+            --text-dark: #1e1e2f;
+            --bg-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
         }
 
-        h1 {
-            color: #00f2fe;
-            text-shadow: 0 0 10px #00f2fe;
-            margin-bottom: 5px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* 清新感頂部，帶有一點點霓虹漸層線條 */
+        header {
             text-align: center;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 243, 255, 0.05);
+            max-width: 650px;
+            margin: 0 auto 25px auto;
+            border-bottom: 4px solid var(--primary-glow);
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--secondary-glow), var(--primary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
         }
 
         .subtitle {
-            color: #ff007f;
-            text-shadow: 0 0 8px #ff007f;
-            margin-bottom: 30px;
-            font-size: 0.9rem;
-            text-align: center;
+            font-size: 1rem;
+            color: #718096;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
-        /* 畫廊網格 Gallery Grid */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            max-width: 400px;
-            width: 100%;
+        /* 雙語宣言區塊 */
+        .manifesto {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid var(--border-color);
         }
 
-        /* 作品卡片 Art Card */
-        .art-card {
-            background: #1a1c28;
-            border: 1px solid #2d3142;
-            border-radius: 12px;
+        .manifesto h2 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 雙語對照排版 */
+        .lang-block {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+        }
+        .lang-block:not(:last-child) {
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .lang-zh {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .lang-en {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* 作品集區塊 */
+        .portfolio-section {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .work-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.01);
+            transition: transform 0.2s;
         }
 
-        .art-card img {
+        /* 給卡片一點點科技霓虹懸浮感 */
+        .work-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-glow);
+        }
+
+        .work-img-placeholder {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 220px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .art-info {
+        .work-info {
             padding: 20px;
         }
 
-        .art-info h3 {
-            margin: 0 0 10px 0;
-            color: #00f2fe;
+        .work-info h3 {
             font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
         }
 
-        .art-info p {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin: 0 0 20px 0;
+        /* 留言板區塊 */
+        .comment-section {
+            max-width: 650px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
         }
 
-        /* 下載按鈕 Download Button */
-        .btn-download {
-            display: block;
-            text-align: center;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            color: #0d0e15;
-            padding: 12px;
-            text-decoration: none;
+        .comment-form textarea {
+            width: 100%;
+            height: 90px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
-            transition: all 0.3s;
+            color: var(--text-dark);
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-family: inherit;
+            resize: none;
         }
 
-        .btn-download:hover {
-            opacity: 0.9;
-            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.6);
+        .comment-btn {
+            background: linear-gradient(45deg, var(--text-dark), #475569);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 0.5px;
         }
 
-        /* 頁腳 Footer */
-        footer {
-            margin-top: 50px;
+        .comment-list {
+            margin-top: 25px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .comment-item {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comment-meta {
             font-size: 0.8rem;
-            color: #475569;
-            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <h1>NEON FUTURE GALLERY</h1>
-    <div class="subtitle">AI Digital Art & Passive Income System / AI 數位藝術與被動收入系統</div>
+    <header>
+        <div class="title">AI Hustle Journal</div>
+        <div class="subtitle">小白的 AI 創業實錄</div>
+    </header>
 
-    <div class="gallery-container">
+    <section class="manifesto">
+        <h2>🔥 My Goal / 我的目標</h2>
+        
+        <div class="lang-block">
+            <p class="lang-zh"><strong>直白地說：我想用 AI 賺錢組電腦！</strong></p>
+            <p class="lang-en"><strong>To be honest: I want to make money using AI to build my PC!</strong></p>
+        </div>
 
-        <!-- 作品 #001 -->
-        <div class="art-card">
-            <img src="cat.jpg" alt="Cyber Cat">
-            <div class="art-info">
-                <h3>#001 Cyber Neon Cat / 賽博霓虹貓</h3>
-                <p>
-                    <strong>[EN]</strong> A futuristic feline enhanced with cybernetic implants, glowing in the neon alleyways.<br>
-                    <strong>[中文]</strong> 穿梭在霓虹巷弄中的未來機械貓，帶有科技感流線電路紋路。
-                </p>
-                <a href="cat.jpg" download class="btn-download">💾 Download High-Res / 獲取高清原圖</a>
+        <div class="lang-block">
+            <p class="lang-zh">你好！我是網頁開發超初學者。因為目前只有一台手機，寫代碼的效率受到了限制。我的策略是：利用 AI 協作，以最快的速度開發出具備商業價值的網頁樣板，賺取我的第一台開發電腦！</p>
+            <p class="lang-en">Hello! I am a complete beginner in web development. Since I only have a smartphone right now, my coding efficiency is limited. My strategy is to collaborate with AI to build commercial web templates as fast as possible, aiming to fund my very first development PC!</p>
+        </div>
+
+        <div class="lang-block">
+            <p class="lang-zh">我不掩飾我想賺錢的野心，這是我的公開逆襲記錄。歡迎各位前輩在下方留下你們的建議！</p>
+            <p class="lang-en">I don't hide my ambition to make money; this is my public journey from zero to hero. Welcome, senior tech friends, to leave your suggestions below!</p>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <div class="section-title">
+            <span>🖼️ Projects / 實戰作品</span>
+        </div>
+        
+        <div class="work-card">
+            <img src="https://i.postimg.cc/44bzzrYD/cat.jpg" alt="Neon Cat" style="width:100%; height:220px; object-fit:cover; border-bottom:1px solid var(--border-color);">
+ [ Screenshot: Neon Cat Web / 霓虹貓截圖 ]</div>
+            <div class="work-info">
+                <h3>01. Neon Cat Landing Page (初代霓虹貓)</h3>
+                <div class="lang-block">
+                    <p class="lang-zh">我的起點。第一次嘗試網頁顏色與動態效果，雖然青澀，但點燃了我的代碼魂。</p>
+                    <p class="lang-en">My starting point. First time experimenting with web colors and animations. It's raw, but it ignited my passion for coding.</p>
+                </div>
             </div>
         </div>
 
-        <!-- 作品 #002 -->
-        <div class="art-card">
-            <img src="girl.jpg" alt="Cyber Girl">
-            <div class="art-info">
-                <h3>#002 Cyber Anime Girl / 賽博動漫少女</h3>
-                <p>
-                    <strong>[EN]</strong> An atmospheric anime-style portrait featuring a cybernetic girl standing under the midnight rain.<br>
-                    <strong>[中文]</strong> 站在午夜街頭雨中的機械少女，細緻的科幻氛圍與唯美光影。
-                </p>
-                <a href="girl.jpg" download class="btn-download">💾 Download High-Res / 獲取高清原圖</a>
+        <div class="work-card">
+            <img src="https://i.postimg.cc/DwsfGKZB/Screenshot-20260613-021131-Acode.jpg" alt="Retro Diner" style="width:100%; height:220px; object-fit:contain; border-bottom:1px solid var(--border-color);">
+
+                <h3>02. Retro Bite Diner Menu (美式復古餐牌)</h3>
+                <div class="lang-block">
+                    <p class="lang-zh">具備商業價值的作品！擁有動態優惠標籤，並成功串接了 WhatsApp 自動化導流點餐功能。</p>
+                    <p class="lang-en">A production-ready commercial project! Featuring dynamic promo badges and fully integrated with WhatsApp automated order redirection.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- 作品 #003 (你親手創作的神作！) -->
-        <div class="art-card">
-            <img src="mycar.jpg" alt="Cyber Car">
-            <div class="art-info">
-                <h3>#003 Cyber Neon City / 賽博霓虹都市</h3>
-                <p>
-                    <strong>[EN]</strong> A high-octane concept supercar parked on a rain-slicked street, perfectly reflecting vivid pink and cyan neon lights.<br>
-                    <strong>[中文]</strong> 停在深夜雨後街頭的未來感超級跑車。地面水窪完美反射出強烈的粉紅與青色霓虹光影。
-                </p>
-                <a href="mycar.jpg" download class="btn-download">💾 Download High-Res / 獲取高清原圖</a>
-            </div>
+    <section class="comment-section">
+        <div class="section-title">💬 Feedback / 大神評論區</div>
+        <div class="comment-form">
+            <label style="font-weight: 600; font-size: 0.9rem; color: #475569;">Leave your advice / 請留下您的改善建議：</label>
+            <textarea placeholder="Code structure, layout, or business logic? / 代碼結構、排版、或是商業邏輯上有什麼可以改進的地方？"></textarea>
+            <button class="comment-btn" onclick="alert('Thanks! Currently a frontend demo, backend is in progress.')">Submit / 提交評論</button>
         </div>
 
-    </div>
-
-    <footer>
-        &copy; 2026 Neon Future Studio. Powered by AI & GitHub.
-    </footer>
+        <div class="comment-list">
+            <div class="comment-item">
+                <div class="comment-meta">Senior Full-Stack Engineer • 1h ago</div>
+                <div class="lang-block">
+                    <p class="lang-zh">用手機寫成這樣很厲害！美式餐牌的 WhatsApp 導流想法非常符合 MVP（最小可行性產品）邏輯，建議下一階段可以學習如何把網頁部署到 GitHub Pages！</p>
+                    <p class="lang-en">Impressive work for someone coding on a phone! The WhatsApp ordering logic fits the MVP model perfectly. Next step, try learning how to deploy this via GitHub Pages!</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
-
